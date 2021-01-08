@@ -31,7 +31,7 @@ def delete_items(request):
     obj = Grocery.objects.get(id=id)
     obj.delete()
     total = Grocery.objects.all().values()
-    output = {'items':list(total)}
+    output = {'items':list(total), 'id':id}
     return JsonResponse(output)
     
 

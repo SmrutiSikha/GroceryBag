@@ -36,7 +36,7 @@
                 <!--- -->
                 <!-- Loop This -->
                 {% for item in items %}
-                <div class="col-lg-4 mt-5">
+                <div class="col-lg-4 mt-5 id-{{item.id}}">
                     <div class="card">
                         <div class="card-body">
                           <h5 class="card-title">{{item.ItemName}}</h5>
@@ -71,7 +71,6 @@
             $(".delete-edit").on("click", ".DeleteButton", function(){
             let id = $(this).attr("data-sid");
             mydata = {sid : id};
-            console.log($('#main').html());
             display = ""
             $.ajax({                    
                     url: "{% url 'deleteItems' %}",     
@@ -80,14 +79,16 @@
                     dataType: 'json',                   
                     success: function(response)         
                     {
-                        output = response.items
-                        for(i=0 ; i < output.length ;i++ )
-                        {
-                            display = display + "<div class='col-lg-4 mt-5'><div class='card'><div class='card-body'><h5 class='card-title'>"+output[i].ItemName+"</h5><h6 class='card-subtitle mb-2 text-muted'>" + output[i].ItemQuantity+"</h6><p class='text-success'>"+output[i].ItemStatus+"</p><div class='row'><div class='col col-sm-6'><div class='delete-edit'><button  data-sid='" + (output[i].id).toString() +  "' class='border-0 btn-transition btn btn-outline-danger DeleteButton'><i class='fa fa-trash' style='font-size:22px'></i> </button></div></div><div class='col col-sm-6'><button class='border-0 btn-transition btn btn-outline-success'><i class='fa fa-edit' style='font-size:22px'></i></button></div></div></div></div></div>";
-                        } 
-                        console.log(display);
+                        output = response.id
+                        // for(i=0 ; i < output.length ;i++ )
+                        // {
+                        //     display = display + "<div class='col-lg-4 mt-5'><div class='card'><div class='card-body'><h5 class='card-title'>"+output[i].ItemName+"</h5><h6 class='card-subtitle mb-2 text-muted'>" + output[i].ItemQuantity+"</h6><p class='text-success'>"+output[i].ItemStatus+"</p><div class='row'><div class='col col-sm-6'><div class='delete-edit'><button  data-sid='" + output[i].id +  "' class='border-0 btn-transition btn btn-outline-danger DeleteButton'><i class='fa fa-trash' style='font-size:22px'></i> </button></div></div><div class='col col-sm-6'><button class='border-0 btn-transition btn btn-outline-success'><i class='fa fa-edit' style='font-size:22px'></i></button></div></div></div></div></div>";
+                        // } 
+                        // console.log(display);
 
-                        $("#main").html(display);                   
+                        // $("#main").html(display);  
+                        console.log(output)  
+                        $(".id-"+id+"").remove();              
                     } 
                 });
         });
