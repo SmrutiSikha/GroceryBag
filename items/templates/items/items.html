@@ -4,10 +4,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>View List</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{% static 'items/css/style.css' %}">
+
     </head>
     <body>
-        <a href="{% url 'addPage' %}">add items</a>
         <div class="container mt-5">
             <!-- top -->
             <div class="row">
@@ -26,6 +27,9 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <a href="{% url 'addPage' %}">Add items</a>
+            </div>
             <!-- // top -->
             <!-- Grocery Cards -->
             <div class="row mt-4">
@@ -38,6 +42,17 @@
                           <h5 class="card-title">{{item.ItemName}}</h5>
                           <h6 class="card-subtitle mb-2 text-muted">{{item.ItemQuantity}}</h6>
                           <p class="text-success">{{item.ItemStatus}}</p>
+                        <div class="row">
+                        <div class="col col-sm-6">
+                           <button  data-sid="{{item.id}}" class="border-0 btn-transition btn btn-outline-danger DeleteButton"> 
+                               <i class="fa fa-trash" style='font-size:22px'></i> </button>
+                        </div>
+                         <div class="col col-sm-6">
+                           <button class="border-0 btn-transition btn btn-outline-success"> 
+                               <i class="fa fa-edit" style='font-size:22px'></i>
+                           </button>
+                        </div>
+                        </div>
                         </div>
                       </div>
                 </div>
@@ -46,5 +61,13 @@
 
             </div>
         </div>
+
+        <script>
+            $("button").on("click", ".DeleteButton", function(){
+            let id = $(this).attr("data-sid");
+            alert(id);
+            mydata = {sid : id};
+        });
+        </script>
     </body>
 </html>
