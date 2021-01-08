@@ -1,0 +1,26 @@
+{% load static %}
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>User Registration</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'items/css/style.css' %}">
+    </head>
+    <body>
+        <div class="container mt-5">
+            <form method="POST" class="form-group">
+                {% csrf_token %}
+                {{form}}
+                <button type="submit" class="btn btn-success">Register</button>
+            </form>
+        </div>
+
+        <script src="{% static 'items/js/jquery.js' %}"></script>
+        <script src="{% static 'items/js/bootstrap.js' %}"></script>
+        <script src="{% static 'items/js/popper.js' %}"></script>
+
+        <script>
+            
+        </script>
+    </body> 
+</html>
