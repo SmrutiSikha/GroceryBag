@@ -27,11 +27,31 @@ def add_items(request):
 
 @csrf_exempt
 def delete_items(request):
+    print("id",request.user)
     id = request.GET['sid']
     obj = Grocery.objects.get(id=id)
     obj.delete()
-    total = Grocery.objects.all().values()
-    output = {'items':list(total), 'id':id}
+    output = {'id':id}
     return JsonResponse(output)
+
+def update_items(request,pk):
+    print("pk",pk)
+    obj = Grocery.objects.get(id=pk)
+    return render(request,"items/update.html",context={'items':obj})
+
+@csrf_exempt
+def updated_items(request):
+    item = Grocery.objects.get(id=request.POST['itemid'])
+    item.ItemName=request.POST['itemname']
+    item.ItemQuantity=request.POST['itemquantity']
+    item.ItemStatus=request.POST['itemstatus']
+    item.Date=request.POST['date']
+    item.save()
+    obj = list(Grocery.objects.all())
+    return render(request,'items/items.html',context={'items':obj})
+
+def filter_items(request):
+    dates = Grocery.objects.filter(Date=request.GET['date'])
+    return JsonResponse({'items':list(dates.values())})
     
 
