@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="{% static 'items/css/style.css' %}">
     </head>
     <body>
+        <a href="{% url 'addPage' %}">add items</a>
         <div class="container mt-5">
             <!-- top -->
             <div class="row">
@@ -30,45 +31,18 @@
             <div class="row mt-4">
                 <!--- -->
                 <!-- Loop This -->
+                {% for item in items %}
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-body">
-                          <h5 class="card-title">Tomato</h5>
-                          <h6 class="card-subtitle mb-2 text-muted">2 Pcs.</h6>
-                          <p class="text-success">BOUGHT</p>
+                          <h5 class="card-title">{{item.ItemName}}</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">{{item.ItemQuantity}}</h6>
+                          <p class="text-success">{{item.ItemStatus}}</p>
                         </div>
                       </div>
                 </div>
+                {% endfor %}
                 <!-- // Loop -->
-                <div class="col-lg-4">
-                    <div class="card">
-                        <div class="card-body">
-                          <h5 class="card-title">Chicken</h5>
-                          <h6 class="card-subtitle mb-2 text-muted">2Kgs</h6>
-                          <p class="text-danger">NOT AVAILABLE</p>
-                        </div>
-                      </div>
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="card">
-                        <div class="card-body">
-                          <h5 class="card-title">Posto</h5>
-                          <h6 class="card-subtitle mb-2 text-muted">50gms</h6>
-                          <p class="text-info">PENDING</p>
-                        </div>
-                      </div>
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="card">
-                        <div class="card-body">
-                          <h5 class="card-title">Tomato</h5>
-                          <h6 class="card-subtitle mb-2 text-muted">2 Pcs.</h6>
-                          <p class="text-success">BOUGHT</p>
-                        </div>
-                      </div>
-                </div>
 
             </div>
         </div>

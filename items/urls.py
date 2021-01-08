@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import items,add_items
+from .views import items,add_items,add_page
 
 urlpatterns = [
     path('',items),
-    path('add/',add_items),
+    path('addPage/',add_page,name='addPage'),
+    path('add/',add_items,name='addItems'),
 ]

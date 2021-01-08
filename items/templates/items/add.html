@@ -21,9 +21,9 @@
                 <div class="form-group">
                     <label>Item status</label>
                     <select class="form-control" id="item_status">
-                        <option value="0">PENDING</option>
-                        <option value="1">BOUGHT</option>
-                        <option value="0">NOT AVAILABLE</option>
+                        <option value="PENDING">PENDING</option>
+                        <option value="BOUGHT">BOUGHT</option>
+                        <option value="NOT AVAILABLE">NOT AVAILABLE</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -48,7 +48,7 @@
                 var date =  $("#item_date").val()
                 var data = {"name":name,"quantity":quantity,"status":status,"date":date}
                 $.ajax({                    
-                    url: 'add/',     
+                    url: "{% url 'addItems' %}",     
                     type: 'post', // performing a POST request
                     data : data,
                     dataType: 'json',                   
@@ -58,7 +58,7 @@
                         console.log(response.msg)
                     } 
                 });
-            })
+            });
         </script>
     </body> 
 </html>

@@ -4,7 +4,7 @@ from django.db import models
 class Grocery(models.Model):
     ItemName = models.CharField(max_length=100)
     ItemQuantity = models.CharField(max_length=50)
-    ItemStatus = models.IntegerField()
+    ItemStatus = models.CharField(max_length=15)
     Date = models.DateField()
     UserId = models.IntegerField(default=5)
 

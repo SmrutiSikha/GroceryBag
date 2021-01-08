@@ -7,10 +7,15 @@ from django.http import JsonResponse
 
 # Create your views here.
 def items(request):
+    obj = list(Grocery.objects.all())
+    return render(request,'items/items.html',context={'items':obj})
+
+def add_page(request):
     return render(request,'items/add.html')
 
 @csrf_exempt
 def add_items(request):
+    print('enetered')
     name = request.POST['name']
     quantity = request.POST['quantity']
     status = request.POST['status']
