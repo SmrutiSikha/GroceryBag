@@ -9,6 +9,7 @@
 
     </head>
     <body>
+    {% if user.is_authenticated %}
         <div class="container mt-5">
             <!-- top -->
             <div class="row">
@@ -116,5 +117,11 @@
                 });
         })
         </script>
+        {% else %}
+        <div class='container mt-5 text-center'>
+            <h4><p>You are not Logged in</p></h4>
+            <p>If you want to see your Grocery list Login <a href="/user/login">Here</a></p>
+        </div>
+        {% endif %}
     </body>
 </html>
