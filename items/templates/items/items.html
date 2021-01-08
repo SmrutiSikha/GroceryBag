@@ -32,7 +32,7 @@
             </div>
             <!-- // top -->
             <!-- Grocery Cards -->
-            <div class="row mt-4">
+            <div class="row mt-4" id='main'>
                 <!--- -->
                 <!-- Loop This -->
                 {% for item in items %}
@@ -63,12 +63,33 @@
 
             </div>
         </div>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="{% static 'items/js/jquery.js' %}"></script>
+        <script src="{% static 'items/js/bootstrap.js' %}"></script>
+        <script src="{% static 'items/js/popper.js' %}"></script>
+
         <script>
             $(".delete-edit").on("click", ".DeleteButton", function(){
             let id = $(this).attr("data-sid");
-            alert(id);
             mydata = {sid : id};
+            console.log($('#main').html());
+            display = ""
+            $.ajax({                    
+                    url: "{% url 'deleteItems' %}",     
+                    type: 'GET', // performing a POST request
+                    data : mydata,
+                    dataType: 'json',                   
+                    success: function(response)         
+                    {
+                        output = response.items
+                        for(i=0 ; i < output.length ;i++ )
+                        {
+                            display = display + "<div class='col-lg-4 mt-5'><div class='card'><div class='card-body'><h5 class='card-title'>"+output[i].ItemName+"</h5><h6 class='card-subtitle mb-2 text-muted'>" + output[i].ItemQuantity+"</h6><p class='text-success'>"+output[i].ItemStatus+"</p><div class='row'><div class='col col-sm-6'><div class='delete-edit'><button  data-sid='" + (output[i].id).toString() +  "' class='border-0 btn-transition btn btn-outline-danger DeleteButton'><i class='fa fa-trash' style='font-size:22px'></i> </button></div></div><div class='col col-sm-6'><button class='border-0 btn-transition btn btn-outline-success'><i class='fa fa-edit' style='font-size:22px'></i></button></div></div></div></div></div>";
+                        } 
+                        console.log(display);
+
+                        $("#main").html(display);                   
+                    } 
+                });
         });
         </script>
     </body>

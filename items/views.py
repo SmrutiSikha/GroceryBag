@@ -25,3 +25,13 @@ def add_items(request):
     output = {'msg':'success'}
     return JsonResponse(output)
 
+@csrf_exempt
+def delete_items(request):
+    id = request.GET['sid']
+    obj = Grocery.objects.get(id=id)
+    obj.delete()
+    total = Grocery.objects.all().values()
+    output = {'items':list(total)}
+    return JsonResponse(output)
+    
+
