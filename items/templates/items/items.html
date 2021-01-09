@@ -14,18 +14,20 @@
             <!-- top -->
             <div class="row">
                 <div class="col-lg-6">
-                    <h1>View Grocery List</h1>
+                    <a href="{% url 'allItems' %}"><h1>View Grocery List</h1></a>
                 </div>
                 <div class="col-lg-6 float-right">
+                <form method="GET" action="{% url 'filterItems' %}">
                     <div class="row">
                         <div class="col-lg-8">
                             <!-- Date Filtering-->
-                            <input type="date" id="datevalue" class="form-control">
+                            <input type="date" id="datevalue" name="date" class="form-control">
                         </div>
                         <div class="col-lg-4">
-                            <input type="button" id='filterdate' class="btn btn-danger" value="filter">
+                            <input type="submit" id='filterdate' class="btn btn-danger" value="filter">
                         </div>
                     </div>
+                </form>
                 </div>
             </div>
             <div class="container mt-5">
@@ -97,29 +99,29 @@
                 });
         });
 
-        $("#filterdate").click(function(){
-            var date = $("#datevalue").val()
-            display = ""
-            $.ajax({                    
-                    url: "{% url 'filterItems' %}",     
-                    type: 'GET', // performing a POST request
-                    data : {'date':date},
-                    dataType: 'json',                   
-                    success: function(response)         
-                    {
-                        output = response.items;
-                        for(let i=0; i < output.length; i++)
-                        {
-                            display = display + "<div class='col-lg-4 mt-5'><div class='card'><div class='card-body'><h5 class='card-title'>"+output[i].ItemName+"</h5><h6 class='card-subtitle mb-2 text-muted'>" + output[i].ItemQuantity+"</h6><p class='text-success'>"+output[i].ItemStatus+"</p><div class='row'><div class='col col-sm-6'><div class='delete-edit'><button data-sid='" + output[i].id +  "' class='border-0 btn-transition btn btn-outline-danger DeleteButton'><i class='fa fa-trash' style='font-size:22px'></i></button></div></div><div class='col col-sm-6'><a href='updates/" + output[i].id + "'><button class='border-0 btn-transition btn btn-outline-success'><i class='fa fa-edit' style='font-size:22px'></i></button></a></div></div></div></div></div>";
-                        }
-                        //$("#main").html('');
-                        //console.log(display);
-                        $("#main").innerHTML = display;
+        // $("#filterdate").click(function(){
+        //     var date = $("#datevalue").val()
+        //     display = ""
+        //     $.ajax({                    
+        //             url: "{% url 'filterItems' %}",     
+        //             type: 'GET', // performing a POST request
+        //             data : {'date':date},
+        //             dataType: 'json',                   
+        //             success: function(response)         
+        //             {
+        //                 output = response.items;
+        //                 for(let i=0; i < output.length; i++)
+        //                 {
+        //                     display = display + "<div class='col-lg-4 mt-5'><div class='card'><div class='card-body'><h5 class='card-title'>"+output[i].ItemName+"</h5><h6 class='card-subtitle mb-2 text-muted'>" + output[i].ItemQuantity+"</h6><p class='text-success'>"+output[i].ItemStatus+"</p><div class='row'><div class='col col-sm-6'><div class='delete-edit'><button data-sid='" + output[i].id +  "' class='border-0 btn-transition btn btn-outline-danger DeleteButton'><i class='fa fa-trash' style='font-size:22px'></i></button></div></div><div class='col col-sm-6'><a href='updates/" + output[i].id + "'><button class='border-0 btn-transition btn btn-outline-success'><i class='fa fa-edit' style='font-size:22px'></i></button></a></div></div></div></div></div>";
+        //                 }
+        //                 //$("#main").html('');
+        //                 //console.log(display);
+        //                 $("#main").innerHTML = display;
                 
                                   
-                    } 
-                });
-        })
+        //             } 
+        //         });
+        // })
         </script>
         {% else %}
         <div class='container mt-5 text-center'>

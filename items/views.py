@@ -64,8 +64,10 @@ def updated_items(request):
     else:
         return redirect('allItems')
 
+@csrf_exempt
 def filter_items(request):
     dates = Grocery.objects.filter(Date=request.GET['date'], UserId=User.objects.get(username=request.user).id)
-    return JsonResponse({'items':list(dates.values())})
+    obj = list(dates)
+    return render(request,'items/items.html',context={'items':obj})
     
 
