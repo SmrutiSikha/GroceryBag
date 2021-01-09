@@ -10,6 +10,10 @@
     {% if user.is_authenticated %}
         <div class="container mt-5">
             <h1>Update Grocery List</h1>
+            <div class="row">
+                <div class="col-lg-6"><h4 class="align-left"><a href="{% url 'allItems' %}">View items</a></h4></div>
+                <div class="col-lg-6 text-right"><a href="/user/logout" class="align-right"><button>LOGOUT</button></a></div>
+            </div>
             <form method="POST" action="{% url 'updateItems' %}">
                 <div class="form-group">
                     <label>Item name</label>
