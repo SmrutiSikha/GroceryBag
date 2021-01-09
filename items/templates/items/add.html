@@ -7,8 +7,13 @@
         <link rel="stylesheet" href="{% static 'items/css/style.css' %}">
     </head>
     <body>
+        {% if user.is_authenticated %}
         <div class="container mt-5">
             <h1>Add Grocery List</h1>
+            <div class="row">
+                <div class="col-lg-6"><h4 class="align-left"><a href="{% url 'allItems' %}">View items</a></h4></div>
+                <div class="col-lg-6 text-right"><a href="/user/logout" class="align-right"><button>LOGOUT</button></a></div>
+            </div>
             <form>
                 <div class="form-group">
                     <label>Item name</label>
@@ -60,5 +65,16 @@
                 });
             })
         </script>
+        {% else %}
+            <div class="container mt-5">
+                <h3>You are not logged in</h3><br>
+                <h4>Redirecting You to Login page</h4>
+            </div>
+            <script>
+                window.setTimeout(function(){
+                    window.location.href = "/user/login";
+                    }, 5000);
+            </script>
+        {% endif %}
     </body> 
 </html>

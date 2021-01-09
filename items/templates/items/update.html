@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="{% static 'items/css/style.css' %}">
     </head>
     <body>
+    {% if user.is_authenticated %}
         <div class="container mt-5">
             <h1>Update Grocery List</h1>
             <form method="POST" action="{% url 'updateItems' %}">
@@ -59,5 +60,16 @@
 
                 $("#dates").val(formatDate("{{items.Date}}"))
         </script>
+    {% else %}
+    <div class="container mt-5">
+        <h3>You are not logged in</h3><br>
+        <h4>Redirecting You to Login page</h4>
+    </div>
+    <script>
+        window.setTimeout(function(){
+            window.location.href = "/user/login";
+            }, 5000);
+    </script>
+    {% endif %}
     </body> 
 </html>

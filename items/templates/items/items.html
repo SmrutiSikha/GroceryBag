@@ -28,8 +28,11 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <a href="{% url 'addPage' %}">Add items</a>
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-lg-6"><h4 class="align-left"><a href="{% url 'addPage' %}">Add items</a></h4></div>
+                    <div class="col-lg-6 text-right"><a href="/user/logout" class="align-right"><button>LOGOUT</button></a></div>
+                </div>
             </div>
             <!-- // top -->
             <!-- Grocery Cards -->
@@ -51,7 +54,7 @@
                             </div>
                         </div>
                          <div class="col col-sm-6">
-                           <a href="updates/{{item.id}}"><button class="border-0 btn-transition btn btn-outline-success"> 
+                           <a href="{% url 'updatepage' pk=item.id %}"><button class="border-0 btn-transition btn btn-outline-success"> 
                                <i class="fa fa-edit" style='font-size:22px'></i>
                            </button></a>
                         </div>

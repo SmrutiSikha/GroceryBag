@@ -8,6 +8,7 @@ def user_register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
+            return render(request,'user/register.html',{'form':form, 'message':'You Have Succesfully Registered'})
     else:
         form = UserCreationForm()
     return render(request,'user/register.html',{'form':form})
