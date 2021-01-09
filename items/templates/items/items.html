@@ -108,12 +108,15 @@
                     success: function(response)         
                     {
                         output = response.items;
-                        for(i=0 ; i < output.length ;i++ )
+                        for(let i=0; i < output.length; i++)
                         {
                             display = display + "<div class='col-lg-4 mt-5'><div class='card'><div class='card-body'><h5 class='card-title'>"+output[i].ItemName+"</h5><h6 class='card-subtitle mb-2 text-muted'>" + output[i].ItemQuantity+"</h6><p class='text-success'>"+output[i].ItemStatus+"</p><div class='row'><div class='col col-sm-6'><div class='delete-edit'><button data-sid='" + output[i].id +  "' class='border-0 btn-transition btn btn-outline-danger DeleteButton'><i class='fa fa-trash' style='font-size:22px'></i></button></div></div><div class='col col-sm-6'><a href='updates/" + output[i].id + "'><button class='border-0 btn-transition btn btn-outline-success'><i class='fa fa-edit' style='font-size:22px'></i></button></a></div></div></div></div></div>";
                         }
-
-                        $("#main").innerHTML=display;            
+                        //$("#main").html('');
+                        //console.log(display);
+                        $("#main").innerHTML = display;
+                
+                                  
                     } 
                 });
         })
